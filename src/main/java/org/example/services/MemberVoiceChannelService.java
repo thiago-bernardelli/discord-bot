@@ -1,6 +1,7 @@
 package org.example.services;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent;
 import org.example.entities.MemberVoiceChannelEvent;
@@ -8,6 +9,7 @@ import org.example.repositories.MemberVoiceChannelEventRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class MemberVoiceChannelService {
 
     private final MemberVoiceChannelEventRepository memberVoiceChannelEventRepository;
@@ -36,7 +38,7 @@ public class MemberVoiceChannelService {
         mvce.setEventName(eventName);
         mvce.setChannel(channel.getName());
         memberVoiceChannelEventRepository.save(mvce);
-        System.out.println(userName + " " + eventName + " no canal " + channel.getName());
+        log.info("member: {}, event: {}, channel: {}", userName, eventName, channel.getName());
     }
 
 }
