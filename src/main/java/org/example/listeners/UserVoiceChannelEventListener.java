@@ -3,22 +3,22 @@ package org.example.listeners;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
-import org.example.services.MemberVoiceChannelService;
+import org.example.services.UserVoiceChannelService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MemberVoiceChannelEventListener implements EventListener {
-    private final MemberVoiceChannelService memberVoiceChannelService;
+public class UserVoiceChannelEventListener implements EventListener {
+    private final UserVoiceChannelService userVoiceChannelService;
 
-    public MemberVoiceChannelEventListener(MemberVoiceChannelService memberVoiceChannelService) {
-        this.memberVoiceChannelService = memberVoiceChannelService;
+    public UserVoiceChannelEventListener(UserVoiceChannelService userVoiceChannelService) {
+        this.userVoiceChannelService = userVoiceChannelService;
     }
 
     @Override
     public void onEvent(@NotNull GenericEvent event) {
         if (event instanceof GuildVoiceUpdateEvent voiceEvent) {
-            memberVoiceChannelService.saveEvent(voiceEvent);
+            userVoiceChannelService.saveEvent(voiceEvent);
         }
     }
 }

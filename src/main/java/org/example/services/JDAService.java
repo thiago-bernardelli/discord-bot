@@ -1,24 +1,23 @@
 package org.example.services;
 
 import net.dv8tion.jda.api.JDABuilder;
-import org.example.listeners.MemberVoiceChannelEventListener;
+import org.example.listeners.UserVoiceChannelEventListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JDAService {
+    private final UserVoiceChannelEventListener userVoiceChannelEventListener;
     @Value("${discord.token}")
     private String discordToken;
 
-    private final MemberVoiceChannelEventListener memberVoiceChannelEventListener;
-
-    public JDAService(MemberVoiceChannelEventListener memberVoiceChannelEventListener) {
-        this.memberVoiceChannelEventListener = memberVoiceChannelEventListener;
+    public JDAService(UserVoiceChannelEventListener userVoiceChannelEventListener) {
+        this.userVoiceChannelEventListener = userVoiceChannelEventListener;
     }
 
     public void run() {
         JDABuilder.createDefault(discordToken)
-                .addEventListeners(memberVoiceChannelEventListener)
+                .addEventListeners(userVoiceChannelEventListener)
                 .build();
     }
 }

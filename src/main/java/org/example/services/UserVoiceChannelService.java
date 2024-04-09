@@ -4,18 +4,18 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent;
-import org.example.entities.MemberVoiceChannelEvent;
-import org.example.repositories.MemberVoiceChannelEventRepository;
+import org.example.entities.UserVoiceChannelEvent;
+import org.example.repositories.UserVoiceChannelEventRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class MemberVoiceChannelService {
+public class UserVoiceChannelService {
 
-    private final MemberVoiceChannelEventRepository memberVoiceChannelEventRepository;
+    private final UserVoiceChannelEventRepository userVoiceChannelEventRepository;
 
-    public MemberVoiceChannelService(MemberVoiceChannelEventRepository memberVoiceChannelEventRepository) {
-        this.memberVoiceChannelEventRepository = memberVoiceChannelEventRepository;
+    public UserVoiceChannelService(UserVoiceChannelEventRepository userVoiceChannelEventRepository) {
+        this.userVoiceChannelEventRepository = userVoiceChannelEventRepository;
     }
 
     @Transactional
@@ -33,11 +33,11 @@ public class MemberVoiceChannelService {
     }
 
     private void handleChannelEvent(String userName, String eventName, AudioChannel channel) {
-        MemberVoiceChannelEvent mvce = new MemberVoiceChannelEvent();
-        mvce.setMember(userName);
-        mvce.setEventName(eventName);
-        mvce.setChannel(channel.getName());
-        memberVoiceChannelEventRepository.save(mvce);
+        UserVoiceChannelEvent userVoiceChannelEvent = new UserVoiceChannelEvent();
+        userVoiceChannelEvent.setMember(userName);
+        userVoiceChannelEvent.setEventName(eventName);
+        userVoiceChannelEvent.setChannel(channel.getName());
+        userVoiceChannelEventRepository.save(userVoiceChannelEvent);
         log.info("member: {}, event: {}, channel: {}", userName, eventName, channel.getName());
     }
 

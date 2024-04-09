@@ -17,11 +17,11 @@ import java.time.ZoneId;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class MemberVoiceChannelEvent {
+public class UserVoiceChannelEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String member;
 
     private String channel;
