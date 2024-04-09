@@ -5,7 +5,9 @@ import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
 import org.example.services.MemberVoiceChannelService;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MemberVoiceChannelEventListener implements EventListener {
     private final MemberVoiceChannelService memberVoiceChannelService;
 
